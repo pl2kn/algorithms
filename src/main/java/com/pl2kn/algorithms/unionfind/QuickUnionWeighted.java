@@ -9,6 +9,7 @@ public class QuickUnionWeighted extends QuickUnion {
 
   /**
    * We need additional array to store weights of each set.
+   * @param n count of nodes.
    */
   public QuickUnionWeighted(int n) {
     super(n);
