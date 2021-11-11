@@ -1,7 +1,7 @@
 package com.pl2kn.algorithms.sort;
 
 /**
- * Implementation of Selection Sort.
+ * Selection Sort implementation.
  */
 public class SelectionSort extends Sort {
 
