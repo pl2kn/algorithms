@@ -1,20 +1,18 @@
-package com.pl2kn.algorithms.list;
+package com.pl2kn.algorithms.collection.list;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.pl2kn.algorithms.collection.list.SinglyLinkedList;
-import com.pl2kn.algorithms.collection.list.SinglyLinkedNode;
 import org.junit.jupiter.api.Test;
 
-public class LinkedListTest {
+public class SinglyLinkedListTest {
 
   @Test
   public void Size_Test() {
     SinglyLinkedList<Integer> singlyLinkedList = new SinglyLinkedList<>();
 
-    singlyLinkedList.addToBeginning(1);
-    singlyLinkedList.addToBeginning(2);
-    singlyLinkedList.addToBeginning(3);
+    singlyLinkedList.addFirst(1);
+    singlyLinkedList.addFirst(2);
+    singlyLinkedList.addFirst(3);
 
     assertEquals(3, singlyLinkedList.getSize());
   }
@@ -23,11 +21,11 @@ public class LinkedListTest {
   public void Add_To_Beginning_Test() {
     SinglyLinkedList<Integer> singlyLinkedList = new SinglyLinkedList<>();
 
-    singlyLinkedList.addToBeginning(1);
-    singlyLinkedList.addToBeginning(2);
+    singlyLinkedList.addFirst(1);
+    singlyLinkedList.addFirst(2);
 
     Integer head = 3;
-    singlyLinkedList.addToBeginning(head);
+    singlyLinkedList.addFirst(head);
 
     assertEquals(head, singlyLinkedList.getHead().getItem());
   }
@@ -37,9 +35,9 @@ public class LinkedListTest {
     SinglyLinkedList<Integer> singlyLinkedList = new SinglyLinkedList<>();
 
     Integer head = 1;
-    singlyLinkedList.addToEnd(head);
-    singlyLinkedList.addToEnd(2);
-    singlyLinkedList.addToEnd(3);
+    singlyLinkedList.addLast(head);
+    singlyLinkedList.addLast(2);
+    singlyLinkedList.addLast(3);
 
     assertEquals(head, singlyLinkedList.getHead().getItem());
   }
@@ -49,7 +47,7 @@ public class LinkedListTest {
     SinglyLinkedList<Integer> singlyLinkedList = new SinglyLinkedList<>();
 
     Integer head = 3;
-    singlyLinkedList.addToBeginning(head);
+    singlyLinkedList.addFirst(head);
 
     assertEquals(head, singlyLinkedList.getHead().getItem());
     assertEquals(head, singlyLinkedList.getTail().getItem());
@@ -60,7 +58,7 @@ public class LinkedListTest {
     SinglyLinkedList<Integer> singlyLinkedList = new SinglyLinkedList<>();
 
     Integer singleNode = 1;
-    singlyLinkedList.addToBeginning(singleNode);
+    singlyLinkedList.addFirst(singleNode);
     singlyLinkedList.delete(singleNode);
 
     assertEquals(0, singlyLinkedList.getSize());
@@ -77,10 +75,10 @@ public class LinkedListTest {
     Integer item3 = 3;
     Integer item4 = 4;
 
-    singlyLinkedList.addToEnd(item1);
-    singlyLinkedList.addToEnd(item2);
-    singlyLinkedList.addToEnd(item3);
-    singlyLinkedList.addToEnd(item4);
+    singlyLinkedList.addLast(item1);
+    singlyLinkedList.addLast(item2);
+    singlyLinkedList.addLast(item3);
+    singlyLinkedList.addLast(item4);
 
     singlyLinkedList.delete(item1);
 
@@ -97,10 +95,10 @@ public class LinkedListTest {
     Integer item3 = 3;
     Integer item4 = 4;
 
-    singlyLinkedList.addToEnd(item1);
-    singlyLinkedList.addToEnd(item2);
-    singlyLinkedList.addToEnd(item3);
-    singlyLinkedList.addToEnd(item4);
+    singlyLinkedList.addLast(item1);
+    singlyLinkedList.addLast(item2);
+    singlyLinkedList.addLast(item3);
+    singlyLinkedList.addLast(item4);
 
     singlyLinkedList.delete(item4);
 
@@ -112,9 +110,9 @@ public class LinkedListTest {
   public void Contains_Test() {
     SinglyLinkedList<Integer> singlyLinkedList = new SinglyLinkedList<>();
 
-    singlyLinkedList.addToBeginning(1);
-    singlyLinkedList.addToBeginning(2);
-    singlyLinkedList.addToBeginning(3);
+    singlyLinkedList.addFirst(1);
+    singlyLinkedList.addFirst(2);
+    singlyLinkedList.addFirst(3);
 
     assertTrue(singlyLinkedList.contains(3));
   }
@@ -123,9 +121,9 @@ public class LinkedListTest {
   public void Not_Contain_Test() {
     SinglyLinkedList<Integer> singlyLinkedList = new SinglyLinkedList<>();
 
-    singlyLinkedList.addToBeginning(1);
-    singlyLinkedList.addToBeginning(2);
-    singlyLinkedList.addToBeginning(3);
+    singlyLinkedList.addFirst(1);
+    singlyLinkedList.addFirst(2);
+    singlyLinkedList.addFirst(3);
 
     assertFalse(singlyLinkedList.contains(6));
   }
@@ -140,12 +138,22 @@ public class LinkedListTest {
     Integer item4 = 4;
     Integer item5 = 5;
 
-    singlyLinkedList.addToEnd(item1);
-    singlyLinkedList.addToEnd(item2);
-    singlyLinkedList.addToEnd(item3);
-    singlyLinkedList.addToEnd(item4);
+    singlyLinkedList.addLast(item1);
+    singlyLinkedList.addLast(item2);
+    singlyLinkedList.addLast(item3);
+    singlyLinkedList.addLast(item4);
 
-    singlyLinkedList.addAfter(item2, item5);
+    SinglyLinkedNode<Integer> current = singlyLinkedList.getHead();
+    SinglyLinkedNode<Integer> node = null;
+    while (current != null) {
+      if (current.getItem().compareTo(item2) == 0) {
+        node = current;
+        break;
+      }
+      current = current.getNextNode();
+    }
+
+    singlyLinkedList.addAfter(node, item5);
 
     assertTrue(isItemBetweenItems(singlyLinkedList, item2, item3, item5));
   }
@@ -160,14 +168,24 @@ public class LinkedListTest {
     Integer item4 = 4;
     Integer item5 = 5;
 
-    singlyLinkedList.addToEnd(item1);
-    singlyLinkedList.addToEnd(item2);
-    singlyLinkedList.addToEnd(item3);
-    singlyLinkedList.addToEnd(item4);
+    singlyLinkedList.addLast(item1);
+    singlyLinkedList.addLast(item2);
+    singlyLinkedList.addLast(item3);
+    singlyLinkedList.addLast(item4);
 
     SinglyLinkedNode<Integer> tail = singlyLinkedList.getTail();
 
-    singlyLinkedList.addAfter(item4, item5);
+    SinglyLinkedNode<Integer> current = singlyLinkedList.getHead();
+    SinglyLinkedNode<Integer> node = null;
+    while (current != null) {
+      if (current.getItem().compareTo(item4) == 0) {
+        node = current;
+        break;
+      }
+      current = current.getNextNode();
+    }
+
+    singlyLinkedList.addAfter(node, item5);
 
     assertEquals(tail.getNextNode().getItem(), item5);
   }

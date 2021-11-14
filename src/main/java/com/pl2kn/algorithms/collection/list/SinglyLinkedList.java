@@ -26,11 +26,11 @@ public class SinglyLinkedList<T extends Comparable<T>> {
   }
 
   /**
-   * Adding a new item at the beginning of the list.
+   * Inserts the item at the beginning of the list.
    *
    * @param item Item added
    */
-  public void addToBeginning(T item) {
+  public void addFirst(T item) {
     SinglyLinkedNode<T> newNode = new SinglyLinkedNode<>(item);
 
     if (head == null) {
@@ -44,11 +44,11 @@ public class SinglyLinkedList<T extends Comparable<T>> {
   }
 
   /**
-   * Adding a new item at the end of the list.
+   * Inserts the new item to the end of the list.
    *
    * @param item Item added
    */
-  public void addToEnd(T item) {
+  public void addLast(T item) {
     SinglyLinkedNode<T> newItem = new SinglyLinkedNode<>(item);
 
     if (head == null) {
@@ -62,27 +62,23 @@ public class SinglyLinkedList<T extends Comparable<T>> {
   }
 
   /**
-   * Add item after specific item.
+   * Inserts the item after the node.
    *
-   * @param afterItem existing item
-   * @param item      item
+   * @param node existing Node
+   * @param item item added
    */
-  public void addAfter(T afterItem, T item) {
-    SinglyLinkedNode<T> currentNode = head;
-    SinglyLinkedNode<T> newNode = new SinglyLinkedNode<>(item);
-
-    while (currentNode != null) {
-      if (currentNode.getItem().compareTo(afterItem) == 0) {
-        newNode.setNextNode(currentNode.getNextNode());
-        currentNode.setNextNode(newNode);
-      }
-
-      currentNode = currentNode.getNextNode();
+  public void addAfter(SinglyLinkedNode<T> node, T item) {
+    if (node == null) {
+      return;
     }
+
+    SinglyLinkedNode<T> newNode = new SinglyLinkedNode<>(item);
+    newNode.setNextNode(node.getNextNode());
+    node.setNextNode(newNode);
   }
 
   /**
-   * Delete the first occurrence of given item.
+   * Deletes the first occurrence of the given item.
    *
    * @param item Item deleted
    */
@@ -120,10 +116,10 @@ public class SinglyLinkedList<T extends Comparable<T>> {
   }
 
   /**
-   * Checks whether the item is present in linked list.
+   * Checks whether the item is present in the linked list.
    *
    * @param item checked item
-   * @return whether exists or not
+   * @return whether the item exists or not
    */
   public boolean contains(T item) {
     SinglyLinkedNode<T> currentItem = head;
