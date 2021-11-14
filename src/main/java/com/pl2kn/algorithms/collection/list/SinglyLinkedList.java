@@ -5,7 +5,7 @@ package com.pl2kn.algorithms.collection.list;
  *
  * @param <T> item type
  */
-public class SinglyLinkedList<T extends Comparable<T>> {
+public class SinglyLinkedList<T> {
 
   private SinglyLinkedNode<T> head;
 
@@ -91,7 +91,7 @@ public class SinglyLinkedList<T extends Comparable<T>> {
     SinglyLinkedNode<T> previousNode = null;
 
     while (currentNode != null) {
-      if (currentNode.getItem().compareTo(item) == 0) {
+      if (currentNode.getItem().equals(item)) {
         if (previousNode == null) {
           head = head.getNextNode();
 
@@ -125,7 +125,7 @@ public class SinglyLinkedList<T extends Comparable<T>> {
     SinglyLinkedNode<T> currentItem = head;
 
     while (currentItem != null) {
-      if (currentItem.getItem().compareTo(item) == 0) {
+      if (currentItem.getItem().equals(item)) {
         return true;
       }
 

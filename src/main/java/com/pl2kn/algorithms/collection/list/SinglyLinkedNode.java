@@ -5,7 +5,7 @@ package com.pl2kn.algorithms.collection.list;
  *
  * @param <T> type of items
  */
-public class SinglyLinkedNode<T extends Comparable<T>> extends Node<T> {
+public class SinglyLinkedNode<T> extends Node<T> {
 
   private SinglyLinkedNode<T> nextNode;
 

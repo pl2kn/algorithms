@@ -1,6 +1,6 @@
 package com.pl2kn.algorithms.collection.list;
 
-abstract class  Node<T extends Comparable<T>> {
+abstract class  Node<T> {
 
   protected T item;
 
@@ -10,9 +10,5 @@ abstract class  Node<T extends Comparable<T>> {
 
   public T getItem() {
     return item;
-  }
-
-  public void setItem(T item) {
-    this.item = item;
   }
 }

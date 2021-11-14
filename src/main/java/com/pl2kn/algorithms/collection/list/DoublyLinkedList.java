@@ -5,7 +5,7 @@ package com.pl2kn.algorithms.collection.list;
  *
  * @param <T> item type
  */
-public class DoublyLinkedList<T extends Comparable<T>> {
+public class DoublyLinkedList<T> {
 
   private DoublyLinkedNode<T> head;
 
@@ -151,7 +151,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
     DoublyLinkedNode<T> currentItem = head;
 
     while (currentItem != null) {
-      if (currentItem.getItem().compareTo(item) == 0) {
+      if (currentItem.getItem().equals(item)) {
         return true;
       }
 
