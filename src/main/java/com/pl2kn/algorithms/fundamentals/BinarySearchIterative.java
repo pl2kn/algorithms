@@ -3,7 +3,7 @@ package com.pl2kn.algorithms.fundamentals;
 /**
  * Binary Search implementation.
  */
-public class BinarySearch {
+public class BinarySearchIterative implements Search {
 
   /**
    * Returns the index of the item searched.
@@ -14,7 +14,7 @@ public class BinarySearch {
    */
   public int search(int[] array, int target) {
     int low = 0;
-    int high = array.length;
+    int high = array.length - 1;
 
     while (low <= high) {
       int mid = low + (high - low) / 2;
