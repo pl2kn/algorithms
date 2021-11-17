@@ -9,10 +9,20 @@ abstract class SortTest {
   public abstract Sort createSort();
 
   @Test
-  public void Sort_Positive_Ints_Odd_Count() {
+  public void Positive_Ints_Odd_Count_Test() {
     Sort sort = createSort();
 
     Integer[] array = {1, 3, 9, 7, 6, 2, 8, 5, 0, 4};
+    sort.sort(array);
+
+    assertTrue(isSortedAsc(array));
+  }
+
+  @Test
+  public void Positive_Ints_Even_Count_Test() {
+    Sort sort = createSort();
+
+    Integer[] array = {1, 3, 9, 7, 6, 2, 13, 8, 5, 0, 4};
     sort.sort(array);
 
     assertTrue(isSortedAsc(array));

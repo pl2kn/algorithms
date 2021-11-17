@@ -21,7 +21,7 @@ public class MergeSort extends Sort {
     merge(array, low, mid, high);
   }
 
-  private <T extends Comparable<T>> void merge(T[] array, int low, int mid, int high) {
+  protected <T extends Comparable<T>> void merge(T[] array, int low, int mid, int high) {
     T[] tempArray = (T[]) new Comparable[array.length];
     for (int i = 0; i < array.length; i++) {
       tempArray[i] = array[i];
