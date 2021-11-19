@@ -16,7 +16,7 @@ public class QuickSort extends Sort {
     }
 
     int index = partition(array, left, right);
-    sort(array, left, index);
+    sort(array, left, index - 1);
     sort(array, index + 1, right);
   }
 
@@ -24,7 +24,7 @@ public class QuickSort extends Sort {
     int i = left;
     int j = right + 1;
 
-    while (i <= j) {
+    while (true) {
       while (array[++i].compareTo(array[left]) < 0) {
         if (i == right) {
           break;
@@ -37,9 +37,11 @@ public class QuickSort extends Sort {
         }
       }
 
-      if (i < j) {
-        swap(array, i, j);
+      if (i >= j) {
+        break;
       }
+
+      swap(array, i, j);
     }
 
     swap(array, left, j);
