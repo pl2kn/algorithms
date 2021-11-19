@@ -32,15 +32,15 @@ public class QuickSelect {
   }
 
   private static int partition(int[] array, int left, int right) {
-    int pivot = array[right];
-    int index = left - 1;
-    for (int i = left; i < right; i++) {
+    int pivot = array[left];
+    int index = left;
+    for (int i = left + 1; i <= right; i++) {
       if (array[i] < pivot) {
         swap(array, ++index, i);
       }
     }
-    swap(array, index + 1, right);
-    return index + 1;
+    swap(array, left, index);
+    return index;
   }
 
   private static void swap(int[] array, int i, int j) {
