@@ -10,6 +10,14 @@ public class QuickSort extends Sort {
     sort(array, 0, array.length - 1);
   }
 
+  /**
+   * Recursively sort an array.
+   *
+   * @param array an array
+   * @param left  the left bound
+   * @param right the right bound
+   * @param <T>   the element type
+   */
   public <T extends Comparable<T>> void sort(T[] array, int left, int right) {
     if (left >= right) {
       return;
