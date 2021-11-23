@@ -9,4 +9,12 @@ abstract class Sort {
     array[i] = array[j];
     array[j] = temp;
   }
+
+  protected static <T extends Comparable<T>> boolean less(T[] array, int i, int j) {
+    return array[i].compareTo(array[j]) < 0;
+  }
+
+  protected static <T extends Comparable<T>> boolean greater(T[] array, int i, int j) {
+    return array[i].compareTo(array[j]) > 0;
+  }
 }
