@@ -8,8 +8,7 @@ import java.util.Arrays;
  * @param <K> key type
  * @param <V> value typ
  */
-public class SequentialSearchST<K extends Comparable<K>, V extends Comparable<V>> implements
-    SymbolTable<K, V> {
+public class SequentialSearchSymbolTable<K extends Comparable<K>, V> implements SymbolTable<K, V> {
 
   private Node first;
 

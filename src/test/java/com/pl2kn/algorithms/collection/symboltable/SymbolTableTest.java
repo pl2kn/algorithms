@@ -62,12 +62,16 @@ abstract class SymbolTableTest {
     symbolTable.put("A", 1);
     symbolTable.put("B", 2);
     symbolTable.put("C", 3);
+    symbolTable.put("D", 4);
+    symbolTable.put("E", 5);
     symbolTable.delete("A");
 
-    assertEquals(2, symbolTable.size());
+    assertEquals(4, symbolTable.size());
     assertNull(symbolTable.get("A"));
     assertEquals(2, symbolTable.get("B"));
     assertEquals(3, symbolTable.get("C"));
+    assertEquals(4, symbolTable.get("D"));
+    assertEquals(5, symbolTable.get("E"));
   }
 
   @Test
@@ -77,12 +81,16 @@ abstract class SymbolTableTest {
     symbolTable.put("A", 1);
     symbolTable.put("B", 2);
     symbolTable.put("C", 3);
-    symbolTable.delete("B");
+    symbolTable.put("D", 4);
+    symbolTable.put("E", 5);
+    symbolTable.delete("C");
 
-    assertEquals(2, symbolTable.size());
+    assertEquals(4, symbolTable.size());
     assertEquals(1, symbolTable.get("A"));
-    assertNull(symbolTable.get("B"));
-    assertEquals(3, symbolTable.get("C"));
+    assertEquals(2, symbolTable.get("B"));
+    assertNull(symbolTable.get("C"));
+    assertEquals(4, symbolTable.get("D"));
+    assertEquals(5, symbolTable.get("E"));
   }
 
   @Test
@@ -92,11 +100,30 @@ abstract class SymbolTableTest {
     symbolTable.put("A", 1);
     symbolTable.put("B", 2);
     symbolTable.put("C", 3);
-    symbolTable.delete("C");
+    symbolTable.put("D", 4);
+    symbolTable.put("E", 5);
+    symbolTable.delete("E");
 
-    assertEquals(2, symbolTable.size());
+    assertEquals(4, symbolTable.size());
     assertEquals(1, symbolTable.get("A"));
     assertEquals(2, symbolTable.get("B"));
-    assertNull(symbolTable.get("C"));
+    assertEquals(3, symbolTable.get("C"));
+    assertEquals(4, symbolTable.get("D"));
+    assertNull(symbolTable.get("E"));
+  }
+
+  @Test
+  public void Replace_Test() throws IllegalAccessException {
+    SymbolTable<String, Integer> symbolTable = createSymbolTable();
+
+    symbolTable.put("A", 1);
+    symbolTable.put("B", 2);
+    symbolTable.put("C", 3);
+    symbolTable.put("B", 5);
+
+    assertEquals(3, symbolTable.size());
+    assertEquals(1, symbolTable.get("A"));
+    assertEquals(5, symbolTable.get("B"));
+    assertEquals(3, symbolTable.get("C"));
   }
 }

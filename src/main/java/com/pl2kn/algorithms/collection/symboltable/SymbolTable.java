@@ -1,6 +1,6 @@
 package com.pl2kn.algorithms.collection.symboltable;
 
-interface SymbolTable<K extends Comparable<K>, V extends Comparable<V>> {
+interface SymbolTable<K extends Comparable<K>, V> {
 
   void put(K key, V value) throws IllegalAccessException;
 

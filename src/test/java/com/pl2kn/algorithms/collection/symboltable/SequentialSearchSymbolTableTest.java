@@ -1,9 +1,9 @@
 package com.pl2kn.algorithms.collection.symboltable;
 
-public class SequentialSearchSTTest extends SymbolTableTest {
+public class SequentialSearchSymbolTableTest extends SymbolTableTest {
 
   @Override
   public SymbolTable<String, Integer> createSymbolTable() {
-    return new SequentialSearchST<>();
+    return new SequentialSearchSymbolTable<>();
   }
 }
