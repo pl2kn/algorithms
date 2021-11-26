@@ -126,4 +126,59 @@ abstract class SymbolTableTest {
     assertEquals(5, symbolTable.get("B"));
     assertEquals(3, symbolTable.get("C"));
   }
+
+
+  @Test
+  public void Min_Key_Test() throws IllegalAccessException {
+    SymbolTable<String, Integer> symbolTable = createSymbolTable();
+
+    symbolTable.put("D", 4);
+    symbolTable.put("B", 2);
+    symbolTable.put("C", 3);
+    symbolTable.put("A", 1);
+    symbolTable.put("E", 5);
+
+    assertEquals("A", symbolTable.min());
+  }
+
+  @Test
+  public void Max_Key_Test() throws IllegalAccessException {
+    SymbolTable<String, Integer> symbolTable = createSymbolTable();
+
+    symbolTable.put("D", 4);
+    symbolTable.put("B", 2);
+    symbolTable.put("E", 5);
+    symbolTable.put("C", 3);
+    symbolTable.put("A", 1);
+
+    assertEquals("E", symbolTable.max());
+  }
+
+  @Test
+  public void Floor_Key_Test() throws IllegalAccessException {
+    SymbolTable<String, Integer> symbolTable = createSymbolTable();
+
+    symbolTable.put("D", 4);
+    symbolTable.put("B", 2);
+    symbolTable.put("F", 6);
+    symbolTable.put("A", 1);
+    symbolTable.put("G", 7);
+    symbolTable.put("E", 5);
+
+    assertEquals("B", symbolTable.floor("C"));
+  }
+
+  @Test
+  public void Ceil_Key_Test() throws IllegalAccessException {
+    SymbolTable<String, Integer> symbolTable = createSymbolTable();
+
+    symbolTable.put("B", 2);
+    symbolTable.put("F", 6);
+    symbolTable.put("A", 1);
+    symbolTable.put("D", 4);
+    symbolTable.put("G", 7);
+    symbolTable.put("E", 5);
+
+    assertEquals("D", symbolTable.ceiling("C"));
+  }
 }

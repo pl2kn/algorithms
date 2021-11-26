@@ -10,6 +10,18 @@ interface SymbolTable<K extends Comparable<K>, V> {
 
   boolean contains(K key) throws IllegalAccessException;
 
+  K min();
+
+  K max();
+
+  void deleteMin() throws IllegalAccessException;
+
+  void deleteMax() throws IllegalAccessException;
+
+  K floor(K key) throws IllegalAccessException;
+
+  K ceiling(K key) throws IllegalAccessException;
+
   boolean isEmpty();
 
   int size();

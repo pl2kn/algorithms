@@ -1,6 +1,7 @@
 package com.pl2kn.algorithms.collection.symboltable;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 /**
  * Sequential Search Symbol Table Implementation.
@@ -57,6 +58,88 @@ public class SequentialSearchSymbolTable<K extends Comparable<K>, V> implements 
       current = current.next;
     }
     return null;
+  }
+
+  @Override
+  public K min() {
+    K min = first.key;
+    Node current = first.next;
+    while (current != null) {
+      if (current.key.compareTo(min) < 0) {
+        min = current.key;
+      }
+      current = current.next;
+    }
+    return min;
+  }
+
+  @Override
+  public K max() {
+    K max = first.key;
+    Node current = first.next;
+    while (current != null) {
+      if (current.key.compareTo(max) > 0) {
+        max = current.key;
+      }
+      current = current.next;
+    }
+    return max;
+  }
+
+  @Override
+  public void deleteMin() throws IllegalAccessException {
+    delete(min());
+  }
+
+  @Override
+  public void deleteMax() throws IllegalAccessException {
+    delete(max());
+  }
+
+  @Override
+  public K floor(K key) throws IllegalAccessException {
+    if (key == null) {
+      throw new IllegalAccessException();
+    }
+    K floor = null;
+    Node current = first.next;
+    while (current != null) {
+      if (current.key.compareTo(key) <= 0) {
+        if (floor == null) {
+          floor = current.key;
+        } else if (current.key.compareTo(floor) > 0) {
+          floor = current.key;
+        }
+      }
+      current = current.next;
+    }
+    if (floor == null) {
+      throw new NoSuchElementException();
+    }
+    return floor;
+  }
+
+  @Override
+  public K ceiling(K key) throws IllegalAccessException {
+    if (key == null) {
+      throw new IllegalAccessException();
+    }
+    K ceiling = null;
+    Node current = first.next;
+    while (current != null) {
+      if (current.key.compareTo(key) >= 0) {
+        if (ceiling == null) {
+          ceiling = current.key;
+        } else if (current.key.compareTo(ceiling) < 0) {
+          ceiling = current.key;
+        }
+      }
+      current = current.next;
+    }
+    if (ceiling == null) {
+      throw new NoSuchElementException();
+    }
+    return ceiling;
   }
 
   @Override

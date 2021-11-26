@@ -1,7 +1,6 @@
 package com.pl2kn.algorithms.collection.symboltable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -62,4 +61,5 @@ public class BinarySearchSymbolTableTest extends SymbolTableTest {
     assertEquals(4, symbolTable.get("D"));
     assertEquals(5, symbolTable.get("E"));
   }
+
 }

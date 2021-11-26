@@ -1,6 +1,7 @@
 package com.pl2kn.algorithms.collection.symboltable;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 /**
  * Binary Search implementation of Symbol Table.
@@ -85,6 +86,53 @@ public class BinarySearchSymbolTable<K extends Comparable<K>, V> implements Symb
       return false;
     }
     return get(key) != null;
+  }
+
+  @Override
+  public K min() {
+    return keys[0];
+  }
+
+  @Override
+  public K max() {
+    return keys[size - 1];
+  }
+
+  @Override
+  public void deleteMin() throws IllegalAccessException {
+    delete(min());
+  }
+
+  @Override
+  public void deleteMax() throws IllegalAccessException {
+    delete(max());
+  }
+
+  @Override
+  public K floor(K key) throws IllegalAccessException {
+    if (key == null) {
+      throw new IllegalAccessException();
+    }
+    int rank = rank(key);
+    if (rank < size && key.compareTo(keys[rank]) == 0) {
+      return keys[rank];
+    }
+    if (rank == 0) {
+      throw new NoSuchElementException();
+    }
+    return keys[rank - 1];
+  }
+
+  @Override
+  public K ceiling(K key) throws IllegalAccessException {
+    if (key == null) {
+      throw new IllegalAccessException();
+    }
+    int rank = rank(key);
+    if (rank == size) {
+      throw new NoSuchElementException();
+    }
+    return keys[rank];
   }
 
   @Override
