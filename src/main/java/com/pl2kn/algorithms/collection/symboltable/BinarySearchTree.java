@@ -1,5 +1,7 @@
 package com.pl2kn.algorithms.collection.symboltable;
 
+import java.util.NoSuchElementException;
+
 /**
  * Binary Search Implementation.
  *
@@ -16,10 +18,12 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable
     private V value;
     private Node left;
     private Node right;
+    private int count;
 
-    public Node(K key, V value) {
+    public Node(K key, V value, int count) {
       this.key = key;
       this.value = value;
+      this.count = count;
     }
   }
 
@@ -31,19 +35,20 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable
     root = put(root, key, value);
   }
 
-  private Node put(Node root, K key, V value) {
-    if (root == null) {
-      return new Node(key, value);
+  private Node put(Node node, K key, V value) {
+    if (node == null) {
+      return new Node(key, value, 1);
     }
-    int comp = key.compareTo(root.key);
+    int comp = key.compareTo(node.key);
     if (comp > 0) {
-      root.right = put(root.right, key, value);
+      node.right = put(node.right, key, value);
     } else if (comp < 0) {
-      root.left = put(root.left, key, value);
+      node.left = put(node.left, key, value);
     } else {
-      root.value = value;
+      node.value = value;
     }
-    return root;
+    node.count = 1 + size(node.left) + size(node.right);
+    return node;
   }
 
   @Override
@@ -77,12 +82,32 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable
 
   @Override
   public K min() {
-    return null;
+    if (isEmpty()) {
+      throw new NoSuchElementException();
+    }
+    return min(root).key;
+  }
+
+  private Node min(Node node) {
+    if (node.left == null) {
+      return node;
+    }
+    return min(node.left);
   }
 
   @Override
   public K max() {
-    return null;
+    if (isEmpty()) {
+      throw new NoSuchElementException();
+    }
+    return max(root).key;
+  }
+
+  private Node max(Node node) {
+    if (node.right == null) {
+      return node;
+    }
+    return max(node.right);
   }
 
   @Override
@@ -97,12 +122,54 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable
 
   @Override
   public K floor(K key) throws IllegalAccessException {
-    return null;
+    if (key == null) {
+      throw new IllegalAccessException();
+    }
+    return floor(root, key).key;
+  }
+
+  private Node floor(Node node, K key) {
+    if (node == null) {
+      return null;
+    }
+    int comp = key.compareTo(node.key);
+    if (comp == 0) {
+      return node;
+    }
+    if (comp < 0) {
+      return ceiling(node.left, key);
+    }
+    Node rightFloor = floor(node.right, key);
+    if (rightFloor == null) {
+      return node;
+    }
+    return rightFloor;
   }
 
   @Override
   public K ceiling(K key) throws IllegalAccessException {
-    return null;
+    if (key == null) {
+      throw new IllegalAccessException();
+    }
+    return ceiling(root, key).key;
+  }
+
+  private Node ceiling(Node node, K key) {
+    if (node == null) {
+      return null;
+    }
+    int comp = key.compareTo(node.key);
+    if (comp == 0) {
+      return node;
+    }
+    if (comp > 0) {
+      return ceiling(node.right, key);
+    }
+    Node leftCeiling = ceiling(node.left, key);
+    if (leftCeiling == null) {
+      return node;
+    }
+    return leftCeiling;
   }
 
   @Override
@@ -112,7 +179,14 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable
 
   @Override
   public int size() {
-    return 0;
+    return size(root);
+  }
+
+  private int size(Node node) {
+    if (node == null) {
+      return 0;
+    }
+    return node.count;
   }
 
   @Override
