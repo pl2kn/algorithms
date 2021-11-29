@@ -54,10 +54,10 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable
 
   @Override
   public V get(K key) throws IllegalAccessException {
-    return get(root, key).value;
+    return get(root, key);
   }
 
-  private Node get(Node node, K key) throws IllegalAccessException {
+  private V get(Node node, K key) throws IllegalAccessException {
     if (key == null) {
       throw new IllegalAccessException();
     }
@@ -70,18 +70,43 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable
     } else if (comp > 0) {
       return get(node.right, key);
     } else {
-      return node;
+      return node.value;
     }
   }
 
   @Override
   public void delete(K key) throws IllegalAccessException {
+    root = delete(root, key);
+  }
 
+  private Node delete(Node node, K key) {
+    if (node == null) {
+      return null;
+    }
+    int comp = key.compareTo(node.key);
+    if (comp < 0) {
+      node.left = delete(node.left, key);
+    } else if (comp > 0) {
+      node.right = delete(node.right, key);
+    } else {
+      if (node.right == null) {
+        return node.left;
+      }
+      if (node.left == null) {
+        return node.right;
+      }
+      Node temp = node;
+      node = min(node.right);
+      node.right = deleteMin(temp.right);
+      node.left = temp.left;
+    }
+    node.count = 1 + size(node.left) + size(node.right);
+    return node;
   }
 
   @Override
   public boolean contains(K key) throws IllegalAccessException {
-    return false;
+    return get(key) != null;
   }
 
   @Override
@@ -116,12 +141,30 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable
 
   @Override
   public void deleteMin() throws IllegalAccessException {
+    root = deleteMin(root);
+  }
 
+  private Node deleteMin(Node node) {
+    if (node.left == null) {
+      return node.right;
+    }
+    node.left = deleteMin(node.left);
+    node.count = 1 + size(node.left) + size(node.right);
+    return node;
   }
 
   @Override
   public void deleteMax() throws IllegalAccessException {
+    root = deleteMax(root);
+  }
 
+  private Node deleteMax(Node node) {
+    if (node.right == null) {
+      return node.left;
+    }
+    node.right = deleteMax(node.right);
+    node.count = 1 + size(node.left) + size(node.right);
+    return node;
   }
 
   @Override
@@ -141,7 +184,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable
       return node;
     }
     if (comp < 0) {
-      return ceiling(node.left, key);
+      return floor(node.left, key);
     }
     Node rightFloor = floor(node.right, key);
     if (rightFloor == null) {
@@ -196,7 +239,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable
 
   @Override
   public boolean isEmpty() {
-    return false;
+    return size() == 0;
   }
 
   @Override

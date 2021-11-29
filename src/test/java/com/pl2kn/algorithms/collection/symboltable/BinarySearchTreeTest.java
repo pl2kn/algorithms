@@ -59,4 +59,123 @@ public class BinarySearchTreeTest extends SymbolTableTest {
     String[] expectedKeys = {"A", "B", "D", "E", "F", "G"};
     assertArrayEquals(expectedKeys, keys);
   }
+
+  @Test
+  public void Delete_Min_Test() throws IllegalAccessException {
+    BinarySearchTree<Integer, Integer> symbolTable = new BinarySearchTree<>();
+
+    symbolTable.put(3, 3);
+    symbolTable.put(1, 1);
+    symbolTable.put(5, 5);
+    symbolTable.put(2, 2);
+    symbolTable.put(0, 0);
+    symbolTable.put(4, 4);
+    symbolTable.put(6, 6);
+
+    symbolTable.deleteMin();
+
+    Integer[] keys = new Integer[symbolTable.size()];
+    int i = 0;
+    for (Integer key : symbolTable.keys()) {
+      keys[i++] = key;
+    }
+
+    Integer[] expectedKeys = {1, 2, 3, 4, 5, 6};
+    assertArrayEquals(expectedKeys, keys);
+  }
+
+  @Test
+  public void Delete_Max_Test() throws IllegalAccessException {
+    BinarySearchTree<Integer, Integer> symbolTable = new BinarySearchTree<>();
+
+    symbolTable.put(3, 3);
+    symbolTable.put(1, 1);
+    symbolTable.put(5, 5);
+    symbolTable.put(2, 2);
+    symbolTable.put(0, 0);
+    symbolTable.put(4, 4);
+    symbolTable.put(6, 6);
+
+    symbolTable.deleteMax();
+
+    Integer[] keys = new Integer[symbolTable.size()];
+    int i = 0;
+    for (Integer key : symbolTable.keys()) {
+      keys[i++] = key;
+    }
+
+    Integer[] expectedKeys = {0, 1, 2, 3, 4, 5};
+    assertArrayEquals(expectedKeys, keys);
+  }
+
+  @Test
+  public void Delete_No_Child_Test() throws IllegalAccessException{
+    BinarySearchTree<Integer, Integer> symbolTable = new BinarySearchTree<>();
+
+    symbolTable.put(3, 3);
+    symbolTable.put(1, 1);
+    symbolTable.put(5, 5);
+    symbolTable.put(2, 2);
+    symbolTable.put(0, 0);
+    symbolTable.put(4, 4);
+    symbolTable.put(6, 6);
+
+    symbolTable.delete(0);
+
+    Integer[] keys = new Integer[symbolTable.size()];
+    int i = 0;
+    for (Integer key : symbolTable.keys()) {
+      keys[i++] = key;
+    }
+
+    Integer[] expectedKeys = {1, 2, 3, 4, 5, 6};
+    assertArrayEquals(expectedKeys, keys);
+  }
+
+  @Test
+  public void Delete_One_Test() throws IllegalAccessException{
+    BinarySearchTree<Integer, Integer> symbolTable = new BinarySearchTree<>();
+
+    symbolTable.put(3, 3);
+    symbolTable.put(1, 1);
+    symbolTable.put(5, 5);
+    symbolTable.put(2, 2);
+    symbolTable.put(4, 4);
+    symbolTable.put(6, 6);
+
+    symbolTable.delete(1);
+
+    Integer[] keys = new Integer[symbolTable.size()];
+    int i = 0;
+    for (Integer key : symbolTable.keys()) {
+      keys[i++] = key;
+    }
+
+    Integer[] expectedKeys = {2, 3, 4, 5, 6};
+    assertArrayEquals(expectedKeys, keys);
+  }
+
+  @Test
+  public void Delete_Two_Children() throws IllegalAccessException{
+    BinarySearchTree<Integer, Integer> symbolTable = new BinarySearchTree<>();
+
+    symbolTable.put(3, 3);
+    symbolTable.put(1, 1);
+    symbolTable.put(5, 5);
+    symbolTable.put(2, 2);
+    symbolTable.put(0, 0);
+    symbolTable.put(4, 4);
+    symbolTable.put(6, 6);
+
+    symbolTable.delete(1);
+
+    Integer[] keys = new Integer[symbolTable.size()];
+    int i = 0;
+    for (Integer key : symbolTable.keys()) {
+      keys[i++] = key;
+    }
+
+    Integer[] expectedKeys = {0, 2, 3, 4, 5, 6};
+    assertArrayEquals(expectedKeys, keys);
+  }
 }
