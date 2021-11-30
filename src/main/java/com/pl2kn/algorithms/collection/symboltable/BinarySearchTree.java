@@ -30,13 +30,13 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable
 
   @Override
   public void put(K key, V value) throws IllegalAccessException {
-    root = put(root, key, value);
-  }
-
-  private Node put(Node node, K key, V value) throws IllegalAccessException {
     if (key == null) {
       throw new IllegalAccessException();
     }
+    root = put(root, key, value);
+  }
+
+  private Node put(Node node, K key, V value) {
     if (node == null) {
       return new Node(key, value, 1);
     }
@@ -54,13 +54,13 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable
 
   @Override
   public V get(K key) throws IllegalAccessException {
-    return get(root, key);
-  }
-
-  private V get(Node node, K key) throws IllegalAccessException {
     if (key == null) {
       throw new IllegalAccessException();
     }
+    return get(root, key);
+  }
+
+  private V get(Node node, K key) {
     if (node == null) {
       return null;
     }
@@ -76,6 +76,9 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SymbolTable
 
   @Override
   public void delete(K key) throws IllegalAccessException {
+    if (key == null) {
+      throw new IllegalAccessException();
+    }
     root = delete(root, key);
   }
 
