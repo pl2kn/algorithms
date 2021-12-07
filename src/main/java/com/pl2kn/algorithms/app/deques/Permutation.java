@@ -1,3 +1,5 @@
+package com.pl2kn.algorithms.app.deques;
+
 import edu.princeton.cs.algs4.StdIn;
 
 public class Permutation {

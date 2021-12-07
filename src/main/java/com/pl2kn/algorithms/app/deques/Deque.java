@@ -1,7 +1,9 @@
+package com.pl2kn.algorithms.app.deques;
+
 import java.util.Iterator;
 
 /**
- * Deque implementation for Week2.
+ * com.pl2kn.algorithms.app.deques.Deque implementation for Week2.
  *
  * @param <Item> item type
  */

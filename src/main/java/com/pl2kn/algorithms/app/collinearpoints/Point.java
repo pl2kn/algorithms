@@ -1,3 +1,5 @@
+package com.pl2kn.algorithms.app.collinearpoints;
+
 import edu.princeton.cs.algs4.StdDraw;
 import java.util.Comparator;
 
