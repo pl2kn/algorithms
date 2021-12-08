@@ -3,16 +3,14 @@ package com.pl2kn.algorithms.app.deques;
 import java.util.Iterator;
 
 /**
- * com.pl2kn.algorithms.app.deques.Deque implementation for Week2.
+ * Deque implementation for Week 2.
  *
  * @param <Item> item type
  */
 public class Deque<Item> implements Iterable<Item> {
 
   private Node first;
-
   private Node last;
-
   private int size;
 
   private class Node {
