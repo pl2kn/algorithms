@@ -29,12 +29,12 @@ public class Solver {
         return;
       }
       for (Board neighbour : current.board.neighbors()) {
-        if (!current.board.equals(neighbour)) {
+        if (current.previous == null || !current.previous.board.equals(neighbour)) {
           gameTree.insert(new SearchNode(neighbour, current.movesCount + 1, current));
         }
       }
       for (Board neighbour : currentTwin.board.neighbors()) {
-        if (!currentTwin.board.equals(neighbour)) {
+        if (currentTwin.previous == null || !currentTwin.previous.board.equals(neighbour)) {
           twinGameTree.insert(new SearchNode(neighbour, currentTwin.movesCount + 1, currentTwin));
         }
       }
