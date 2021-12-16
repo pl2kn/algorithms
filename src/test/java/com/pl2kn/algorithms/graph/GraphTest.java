@@ -15,8 +15,8 @@ public class GraphTest {
     graph.addEdge(0, 2);
     graph.addEdge(0, 3);
 
-    assertEquals(10, graph.vertexCount());
-    assertEquals(3, graph.getEdgeCount());
+    assertEquals(10, graph.V());
+    assertEquals(3, graph.getE());
 
     ArrayList<Integer> expectedAdj = new ArrayList<>();
     expectedAdj.add(1);

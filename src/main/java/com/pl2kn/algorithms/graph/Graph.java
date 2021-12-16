@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class Graph {
 
-  private final int vertexCount;
-  private int edgeCount;
+  private final int V;
+  private int E;
   private final ArrayList<ArrayList<Integer>> adj;
 
-  public Graph(int vertexCount) {
-    this.vertexCount = vertexCount;
+  public Graph(int V) {
+    this.V = V;
     adj = new ArrayList<>();
-    for (int i = 0; i < vertexCount; i++) {
+    for (int i = 0; i < V; i++) {
       adj.add(new ArrayList<>());
     }
   }
@@ -19,18 +19,18 @@ public class Graph {
   public void addEdge(int v, int u) {
     adj.get(v).add(u);
     adj.get(u).add(v);
-    edgeCount++;
+    E++;
   }
 
   public Iterable<Integer> adj(int v) {
     return adj.get(v);
   }
 
-  public int vertexCount() {
-    return vertexCount;
+  public int V() {
+    return V;
   }
 
-  public int getEdgeCount() {
-    return edgeCount;
+  public int getE() {
+    return E;
   }
 }
