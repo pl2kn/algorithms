@@ -5,10 +5,11 @@ package com.pl2kn.algorithms.unionfind;
  */
 public class QuickUnionWeighted extends QuickUnion {
 
-  private int[] weights;
+  private final int[] weights;
 
   /**
    * We need additional array to store weights of each set.
+   *
    * @param n count of nodes.
    */
   public QuickUnionWeighted(int n) {
