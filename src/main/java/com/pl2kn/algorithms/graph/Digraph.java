@@ -3,9 +3,9 @@ package com.pl2kn.algorithms.graph;
 import java.util.ArrayList;
 
 /**
- * Undirected Graph implementation.
+ * Directed Graph implementation.
  */
-public class Graph {
+public class Digraph {
 
   private final int V;
   private int E;
@@ -16,7 +16,7 @@ public class Graph {
    *
    * @param V the vertices count
    */
-  public Graph(int V) {
+  public Digraph(int V) {
     this.V = V;
     adj = new ArrayList<>();
     for (int i = 0; i < V; i++) {
@@ -24,15 +24,8 @@ public class Graph {
     }
   }
 
-  /**
-   * Add undirected edge between the vertices.
-   *
-   * @param v the first vertex
-   * @param u the second vertex
-   */
   public void addEdge(int v, int u) {
     adj.get(v).add(u);
-    adj.get(u).add(v);
     E++;
   }
 

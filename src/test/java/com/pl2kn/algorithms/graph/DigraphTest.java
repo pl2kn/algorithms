@@ -5,28 +5,33 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
-public class GraphTest {
+public class DigraphTest {
 
   @Test
   public void Simple_Test() {
-    Graph graph = new Graph(10);
+    Digraph graph = new Digraph(13);
 
+    graph.addEdge(0, 5);
     graph.addEdge(0, 1);
-    graph.addEdge(0, 2);
-    graph.addEdge(0, 3);
+    graph.addEdge(2, 0);
+    graph.addEdge(2, 3);
+    graph.addEdge(3, 5);
+    graph.addEdge(3, 2);
+    graph.addEdge(4, 3);
+    graph.addEdge(4, 2);
+    graph.addEdge(5, 4);
 
-    assertEquals(10, graph.V());
-    assertEquals(3, graph.E());
+    assertEquals(13, graph.V());
+    assertEquals(9, graph.E());
 
     ArrayList<Integer> expectedAdj = new ArrayList<>();
-    expectedAdj.add(1);
-    expectedAdj.add(2);
-    expectedAdj.add(3);
+    expectedAdj.add(4);
     int adjCount = 0;
-    for (Integer adj : graph.adj(0)) {
+    for (Integer adj : graph.adj(5)) {
       assertTrue(expectedAdj.contains(adj));
       adjCount++;
     }
     assertEquals(expectedAdj.size(), adjCount);
   }
 }
+

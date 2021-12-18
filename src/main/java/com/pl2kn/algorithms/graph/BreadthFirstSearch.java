@@ -4,6 +4,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+/**
+ * Breadth-First Search Implementation.
+ */
 public class BreadthFirstSearch implements Path {
 
   private final boolean[] marked;
