@@ -24,13 +24,13 @@ public class DepthFirstOrderTest {
     digraph.addEdge(1, 4);
 
     Stack<Integer> expectedOrder = new Stack<>();
-    expectedOrder.add(4);
-    expectedOrder.add(1);
-    expectedOrder.add(2);
-    expectedOrder.add(5);
-    expectedOrder.add(0);
-    expectedOrder.add(6);
     expectedOrder.add(3);
+    expectedOrder.add(6);
+    expectedOrder.add(0);
+    expectedOrder.add(5);
+    expectedOrder.add(2);
+    expectedOrder.add(1);
+    expectedOrder.add(4);
 
     DepthFirstOrder dfo = new DepthFirstOrder(digraph);
 

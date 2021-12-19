@@ -29,6 +29,21 @@ public class Digraph {
     E++;
   }
 
+  /**
+   * Creates reverted graph.
+   *
+   * @return reverted graph.
+   */
+  public Digraph reverse() {
+    Digraph reverse = new Digraph(V);
+    for (int v = 0; v < V; v++) {
+      for (int w : adj(v)) {
+        reverse.addEdge(w, v);
+      }
+    }
+    return reverse;
+  }
+
   public Iterable<Integer> adj(int v) {
     return adj.get(v);
   }

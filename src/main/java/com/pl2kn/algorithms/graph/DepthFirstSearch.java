@@ -2,7 +2,10 @@ package com.pl2kn.algorithms.graph;
 
 import java.util.Stack;
 
-public class DepthFirstSearch implements Path{
+/**
+ * Depth-First Search implementation.
+ */
+public class DepthFirstSearch implements Path {
 
   private final boolean[] marked;
   private final int[] edgeTo;

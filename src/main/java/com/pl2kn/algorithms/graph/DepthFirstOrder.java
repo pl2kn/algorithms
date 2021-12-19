@@ -1,5 +1,7 @@
 package com.pl2kn.algorithms.graph;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -31,6 +33,10 @@ public class DepthFirstOrder {
   }
 
   public Iterable<Integer> reversedPost() {
-    return reversedPost;
+    List<Integer> result = new ArrayList<>();
+    while (!reversedPost.isEmpty()) {
+      result.add(reversedPost.pop());
+    }
+    return result;
   }
 }
