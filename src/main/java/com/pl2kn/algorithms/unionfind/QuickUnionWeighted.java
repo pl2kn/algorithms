@@ -16,12 +16,15 @@ public class QuickUnionWeighted extends QuickUnion {
     super(n);
 
     weights = new int[n];
+    for (int i = 0; i < n; i++) {
+      weights[i] = 1;
+    }
   }
 
   @Override
   public void union(int p, int q) {
-    int pRoot = nodes[p];
-    int qRoot = nodes[q];
+    int pRoot = find(p);
+    int qRoot = find(q);
 
     if (pRoot == qRoot) {
       return;
