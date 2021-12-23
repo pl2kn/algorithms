@@ -7,7 +7,7 @@ package com.pl2kn.algorithms.collection.list;
  */
 public class MaxBinaryHeap<T extends Comparable<T>> implements MaxPriorityQueue<T> {
 
-  private T[] nodes;
+  private final T[] nodes;
 
   private int size;
 
