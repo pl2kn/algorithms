@@ -1,16 +1,8 @@
 package com.pl2kn.algorithms.graph;
 
-public abstract class ShortestPath {
+interface ShortestPath {
 
-  private final EdgeWeightedDigraph graph;
-  private final int source;
+  double distTo(int v);
 
-  public ShortestPath(EdgeWeightedDigraph graph, int source) {
-    this.graph = graph;
-    this.source = source;
-  }
-
-  public abstract double distTo(int v);
-
-  public abstract Iterable<DirectedEdge> pathTo(int v);
+  Iterable<DirectedEdge> pathTo(int v);
 }
