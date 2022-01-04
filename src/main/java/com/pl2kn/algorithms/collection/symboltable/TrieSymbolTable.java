@@ -1,5 +1,8 @@
 package com.pl2kn.algorithms.collection.symboltable;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * R-way Trie implementation.
  *
@@ -79,5 +82,60 @@ public class TrieSymbolTable<T> {
       }
     }
     return null;
+  }
+
+  /**
+   * Returns all keys.
+   *
+   * @return the keys
+   */
+  public Iterable<String> keys() {
+    Queue<String> queue = new LinkedList<>();
+    collect(root, "", queue);
+    return queue;
+  }
+
+  /**
+   * Finds all keys starting with a given prefix.
+   *
+   * @param prefix the given prefix
+   * @return the keys
+   */
+  public Iterable<String> keysWithPrefix(String prefix) {
+    Queue<String> queue = new LinkedList<>();
+    Node node = get(root, prefix, 0);
+    collect(node, prefix, queue);
+    return queue;
+  }
+
+  private void collect(Node node, String prefix, Queue<String> queue) {
+    if (node == null) {
+      return;
+    }
+    if (node.value != null) {
+      queue.add(prefix);
+    }
+    for (char c = 0; c < R; c++) {
+      collect(node.next[c], prefix + c, queue);
+    }
+  }
+
+  public String longestPrefixOf(String query) {
+    int length = search(root, query, 0, 0);
+    return query.substring(0, length);
+  }
+
+  private int search(Node node, String query, int d, int length) {
+    if (node == null) {
+      return length;
+    }
+    if (node.value != null) {
+      length = d;
+    }
+    if (d == query.length()) {
+      return length;
+    }
+    char c = query.charAt(d);
+    return search(node.next[c], query, d + 1, length);
   }
 }
