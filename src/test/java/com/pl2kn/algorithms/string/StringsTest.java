@@ -31,4 +31,11 @@ public class StringsTest {
     String string = "zxcvababhhffffffghgjgkabab";
     assertEquals("fffff", Strings.lrs(string));
   }
+
+  @Test
+  public void Search_Test() {
+    String pattern = "abh";
+    String text = "zxcvababhhjjghgjgkabab";
+    assertEquals(6, Strings.search(pattern, text));
+  }
 }

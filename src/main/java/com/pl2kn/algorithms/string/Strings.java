@@ -46,4 +46,55 @@ public class Strings {
     }
     return lrs;
   }
+
+  /**
+   * Return the pattern substring position in the text.
+   *
+   * @param pattern the pattern
+   * @param text    the text
+   * @return the position
+   */
+  public static int search(String pattern, String text) {
+    int patternLength = pattern.length();
+    int textLength = text.length();
+    for (int i = 0; i < textLength - patternLength; i++) {
+      int j;
+      for (j = 0; j < patternLength; j++) {
+        if (text.charAt(i + j) != pattern.charAt(j)) {
+          break;
+        }
+      }
+      if (j == patternLength) {
+        return i;
+      }
+    }
+    return textLength;
+  }
+
+  /**
+   * Return the pattern substring position in the text with implicit backup.
+   *
+   * @param pattern the pattern
+   * @param text    the text
+   * @return the position
+   */
+  public static int altSearch(String pattern, String text) {
+    int patternLength = pattern.length();
+    int textLength = text.length();
+    int i;
+    int j;
+    for (i = 0, j = 0; i < textLength && j < patternLength; i++) {
+      if (text.charAt(i) == pattern.charAt(j)) {
+        j++;
+      } else {
+        i -= j;
+        j = 0;
+      }
+    }
+    if (j == patternLength) {
+      return i - patternLength;
+    }
+
+    return textLength;
+  }
 }
